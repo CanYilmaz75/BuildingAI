@@ -1,0 +1,32 @@
+import math
+import numpy as np
+
+x = np.array([4, 3, 0])
+c1 = np.array([-.5, .1, .08])
+c2 = np.array([-.2, .2, .31])
+c3 = np.array([.5, -.1, 2.53])
+
+def sigmoid(z):
+    return 1 / (1 + math.exp(-z))
+
+# Calculate the output of the sigmoid for x with all three coefficients
+output_c1 = sigmoid(np.dot(c1, x))
+output_c2 = sigmoid(np.dot(c2, x))
+output_c3 = sigmoid(np.dot(c3, x))
+
+print("Output with c1 coefficients:", output_c1)
+print("Output with c2 coefficients:", output_c2)
+print("Output with c3 coefficients:", output_c3)
+
+# Determine which set of coefficients yields the highest sigmoid output
+max_output = max(output_c1, output_c2, output_c3)
+max_coefficients = None
+
+if max_output == output_c1:
+    max_coefficients = "c1"
+elif max_output == output_c2:
+    max_coefficients = "c2"
+else:
+    max_coefficients = "c3"
+
+print("Set of coefficients with the highest sigmoid output:", max_coefficients)
