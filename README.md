@@ -1,120 +1,61 @@
 # BuildingAI
+# Project Title
 
-
-This is the markdown template for the final project of the Building AI course, 
-created by Reaktor Innovations and University of Helsinki. 
-
-##  Stock Analysis with Python
-
-This Python script provides a comprehensive analysis of stock data using various libraries like `pandas`, `numpy`, `matplotlib`, and `seaborn`. It focuses on four major tech companies - Apple, Google, Microsoft, and Amazon. The script covers data extraction, visualization, moving averages, daily returns, correlation analysis, and stock price prediction using a LSTM neural network model.
-
+Final project for the Building AI course
 
 ## Summary
 
-This script is a comprehensive toolkit for stock data analysis and prediction. It covers from basic data visualization to advanced predictive modeling using deep learning. The modular structure allows for easy adaptation to different stocks or financial metrics.
+This project leverages Python to analyze and predict stock prices of major tech companies. It combines data fetching, processing, visualization, and machine learning to offer insights into stock market trends and future price movements.
 
-### Libraries and Setup
 
-- **Pandas & Numpy:** For data manipulation and numerical calculations.
-- **Matplotlib & Seaborn:** For data visualization.
-- **pandas_datareader & yfinance:** To fetch financial data from Yahoo Finance.
-- **datetime:** To work with date and time objects.
 
-```python
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from pandas_datareader.data import DataReader
+## Background
+
+This solution addresses several challenges in financial markets:
+
+Difficulty in understanding market trends and predicting stock movements.
+Need for accessible, automated analysis for individual investors.
+Integrating various data sources for comprehensive market analysis.
+The motivation for this project stems from the growing interest in stock market investments and the need for more accessible financial analysis tools. This project is significant because it empowers individuals with data-driven insights, crucial in making informed investment decisions.
+
+## How is it used?
+
+Users can execute the script to fetch historical stock data, visualize trends, and predict future prices. It's useful in scenarios like:
+
+Individual investors analyzing market trends.
+Financial analysts seeking automated tools for data analysis.
+Educational purposes for understanding stock market dynamics.
+The project's primary users are individual investors and financial analysts. It takes into account the need for accurate, real-time market data and intuitive visual representations.
+
+Code Example
+python
+Copy code
 import yfinance as yf
-from pandas_datareader import data as pdr
 from datetime import datetime
-```
 
-### Initial Configuration
+# Fetch and plot stock data
+stock = yf.download('AAPL', start='2020-01-01', end=datetime.now())
+stock['Close'].plot(title="Apple Stock Price")
 
-- Setting up plot styles and overriding the pandas datareader to use `yfinance` instead.
-- Defining the list of tech companies and setting the time frame for data analysis.
 
-```python
-sns.set_style('whitegrid')
-plt.style.use("fivethirtyeight")
-yf.pdr_override()
+## Data sources and AI methods
+Data is sourced from Yahoo Finance using the yfinance library. The project employs LSTM (Long Short-Term Memory) networks, a type of recurrent neural network, for predicting stock prices.
 
-tech_list = ['AAPL', 'GOOG', 'MSFT', 'AMZN']
-end = datetime.now()
-start = datetime(end.year - 1, end.month, end.day)
-```
+## Challenges
 
-### Data Acquisition
+This project does not guarantee accurate predictions every time due to the inherent unpredictability of the stock market. Ethical considerations include the risk of misinterpreting predictions as financial advice, which must be addressed through clear disclaimers.
 
-- Fetching historical stock data for each company and concatenating them into a single DataFrame.
-- Adding company names to the DataFrame.
+## What next?
 
-```python
-for stock in tech_list:
-    globals()[stock] = yf.download(stock, start, end)
+Future development could involve:
 
-company_list = [AAPL, GOOG, MSFT, AMZN]
-company_name = ["APPLE", "GOOGLE", "MICROSOFT", "AMAZON"]
+Integrating more diverse data sources (e.g., social media sentiment).
+Improving prediction models with advanced AI techniques.
+Developing a user-friendly interface for non-programmers.
+To progress, collaboration with data scientists and UI/UX designers would be beneficial.
 
-for company, com_name in zip(company_list, company_name):
-    company["company_name"] = com_name
-    
-df = pd.concat(company_list, axis=0)
-```
+## Acknowledgments
 
-### Data Visualization and Analysis
-
-- Visualizing adjusted closing prices and volumes traded.
-- Calculating and plotting moving averages (10, 20, 50 days).
-- Analyzing daily returns and plotting histograms.
-- Creating correlation matrices between the stocks.
-
-```python
-# Example: Plotting Adjusted Close Price
-plt.figure(figsize=(15, 10))
-for i, company in enumerate(company_list, 1):
-    plt.subplot(2, 2, i)
-    company['Adj Close'].plot()
-    plt.title(f"Closing Price of {tech_list[i - 1]}")
-plt.tight_layout()
-```
-
-### Predictive Analysis Using LSTM
-
-- Preprocessing the data for the LSTM model (scaling, creating training and test datasets).
-- Building and training the LSTM model on the closing price of Apple stock.
-- Predicting future stock prices and calculating the model's performance (RMSE).
-
-```python
-from keras.models import Sequential
-from keras.layers import Dense, LSTM
-from sklearn.preprocessing import MinMaxScaler
-
-# Example: Building the LSTM Model
-model = Sequential()
-model.add(LSTM(128, return_sequences=True, input_shape=(x_train.shape[1], 1)))
-model.add(LSTM(64, return_sequences=False))
-model.add(Dense(25))
-model.add(Dense(1))
-
-model.compile(optimizer='adam', loss='mean_squared_error')
-model.fit(x_train, y_train, batch_size=1, epochs=1)
-```
-
-### Final Visualization
-
-- Visualizing actual vs predicted prices of Apple stock using matplotlib.
-
-```python
-plt.figure(figsize=(16,6))
-plt.title('Model')
-plt.xlabel('Date', fontsize=18)
-plt.ylabel('Close Price USD ($)')
-plt.plot(train['Close'])
-plt.plot(valid[['Close', 'Predictions']])
-plt.legend(['Train', 'Val', 'Predictions'], loc='lower right')
-plt.show()
-```
-
+* Yahoo Finance for providing accessible stock market data.
+The Python and data science community for continuous support and resources.
+Inspiration from various financial analysis projects shared publicly for educational purposes.
