@@ -113,6 +113,6 @@ plt.legend(['Train', 'Val', 'Predictions'], loc='lower right')
 plt.show()
 ```
 
-### Summary
+## Summary
 
 This script is a comprehensive toolkit for stock data analysis and prediction. It covers from basic data visualization to advanced predictive modeling using deep learning. The modular structure allows for easy adaptation to different stocks or financial metrics.
