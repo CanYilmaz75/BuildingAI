@@ -34,9 +34,10 @@ import yfinance as yf
 from datetime import datetime
 
 # Fetch and plot stock data
+```
 stock = yf.download('AAPL', start='2020-01-01', end=datetime.now())
 stock['Close'].plot(title="Apple Stock Price")
-
+```
 
 ## Data sources and AI methods
 Data is sourced from Yahoo Finance using the yfinance library. The project employs LSTM (Long Short-Term Memory) networks, a type of recurrent neural network, for predicting stock prices.
