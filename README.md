@@ -8,6 +8,11 @@ created by Reaktor Innovations and University of Helsinki.
 
 This Python script provides a comprehensive analysis of stock data using various libraries like `pandas`, `numpy`, `matplotlib`, and `seaborn`. It focuses on four major tech companies - Apple, Google, Microsoft, and Amazon. The script covers data extraction, visualization, moving averages, daily returns, correlation analysis, and stock price prediction using a LSTM neural network model.
 
+
+## Summary
+
+This script is a comprehensive toolkit for stock data analysis and prediction. It covers from basic data visualization to advanced predictive modeling using deep learning. The modular structure allows for easy adaptation to different stocks or financial metrics.
+
 ### Libraries and Setup
 
 - **Pandas & Numpy:** For data manipulation and numerical calculations.
@@ -113,6 +118,3 @@ plt.legend(['Train', 'Val', 'Predictions'], loc='lower right')
 plt.show()
 ```
 
-## Summary
-
-This script is a comprehensive toolkit for stock data analysis and prediction. It covers from basic data visualization to advanced predictive modeling using deep learning. The modular structure allows for easy adaptation to different stocks or financial metrics.
